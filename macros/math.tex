@@ -87,18 +87,25 @@
 \def\calY{\mathcal{Y}}
 \def\calZ{\mathcal{Z}}
 
-
 %% Theorem Environments %%
 \usepackage{amsthm}
 \usepackage{thmtools, thm-restate}
-\declaretheorem{theorem}
-\declaretheorem{proposition}
-\declaretheorem{remark}
-\declaretheorem{lemma}
-\declaretheorem{definition}
-\declaretheorem{assumption}
-\declaretheorem{corollary}
-\declaretheorem{example}
+
+\declaretheorem[numberwithin=section]{theorem}
+\declaretheorem[numberwithin=section]{proposition}
+\declaretheorem[numberwithin=section]{lemma}
+\declaretheorem[numberwithin=section]{definition}
+\declaretheorem[numberwithin=section]{assumption}
+\declaretheorem[numberwithin=section]{corollary}
+\declaretheorem[numberwithin=section]{example}
+\declaretheorem[numbered=no]{remark}
+
+\makeatletter
+\def\thm@space@setup{%
+	\thm@preskip=1ex
+	\thm@postskip=\thm@preskip % or whatever, if you don't want them to be equal
+}
+\makeatother
 
 %% Floor and Ceiling %%
 \usepackage{mathtools} % required for \DeclarePairedDelimeter
@@ -150,6 +157,7 @@
 % argmax/argmin
 \def\argmax{\mathop{\rm arg\,max}}
 \def\argmin{\mathop{\rm arg\,min}}
+\def\find{\mathop{\rm Find}}
 
 % General Symbols
 \def\half{\frac 1 2}
@@ -159,6 +167,17 @@
 \newcommand{\eR}{\bar{\mathbb{R}}}
 
 \newcommand{\into}{\rightarrow}
+
+% Linear Algebra
+\newcommand{\vspan}{\text{Span}}
+\newcommand{\row}{\text{Row}}
+\newcommand{\col}{\text{Col}}
+\newcommand{\Null}{\text{Null}}
+\newcommand{\Dim}{\text{Dim}}
+
+% Functions
+\newcommand{\dom}{\text{Dom}}
+\newcommand{\sign}{\text{sign}}
 
 % Gradient Descent Symbols
 \newcommand{\oracle}{\mbox{\( \calO \)}}
@@ -183,7 +202,6 @@
 \newcommand{\wkk}{w_{k+1}}
 \newcommand{\wopt}{w^*}
 \newcommand{\wbar}{\bar{w}}
-
 
 \newcommand{\x}{x}
 \newcommand{\xk}{x_k}
@@ -230,7 +248,6 @@
 \newcommand{\wgc}{\alpha}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
 %% Etc %%  
 
 %% add numbers to align* environments.
@@ -238,9 +255,90 @@
 
 %%%%%%%%%
 
+\newcommand{\Wl}{W^{(l)}}
+\newcommand{\Wll}{W^{(l+1)}}
+\newcommand{\Wk}{W^{(L)}}
+
+\newcommand{\Dl}{D^{(l)}}
+\newcommand{\Dll}{D^{(l+1)}}
+\newcommand{\Dk}{D^{(L)}}
+
+\newcommand{\calDl}{\calD^{(l)}}
+\newcommand{\calDll}{\calD^{(l+1)}}
+\newcommand{\calDk}{\calD^{(L)}}
+
+\newcommand{\nscalD}{\leftindex_{\text{ns}}{\calD}}
+\newcommand{\nscalDl}{\leftindex_{\text{ns}}{\calD}^{(l)}}
+\newcommand{\nscalDll}{\leftindex_{\text{ns}}{\calD}^{(l+1)}}
+\newcommand{\nscalDk}{\leftindex_{\text{ns}}{\calD}^{(L)}}
+
+\newcommand{\calKl}{\calK^{(l)}}
+\newcommand{\calKll}{\calK^{(l+1)}}
+\newcommand{\calKk}{\calK^{(L)}}
+
+\newcommand{\calGl}{\calG^{(l)}}
+\newcommand{\calGll}{\calG^{(l+1)}}
+\newcommand{\calGk}{\calG^{(L)}}
+
+\newcommand{\calCl}{\calC^{(l)}}
+\newcommand{\calCll}{\calC^{(l+1)}}
+\newcommand{\calCk}{\calC^{(L)}}
+
+\newcommand{\nscalC}{\leftindex_{\text{ns}}{\calC}}
+\newcommand{\nscalCl}{\leftindex_{\text{ns}}{\calC}^{(l)}}
+\newcommand{\nscalCll}{\leftindex_{\text{ns}}{\calC}^{(l+1)}}
+\newcommand{\nscalCk}{\leftindex_{\text{ns}}{\calC}^{(L)}}
+
+\newcommand{\calHl}{\calH^{(l)}}
+\newcommand{\calHll}{\calH^{(l+1)}}
+\newcommand{\calHk}{\calH^{(L)}}
+
+\newcommand{\Xl}{X^{(l)}}
+\newcommand{\Xll}{X^{(l+1)}}
+\newcommand{\Xk}{X^{(L)}}
+
+\newcommand{\tXl}{X^{(l)}_{\text{gated}}}
+\newcommand{\tXll}{X^{(l+1)}_{\text{gated}}}
+\newcommand{\tXk}{X^{(L)}_{\text{gated}}}
+\newcommand{\nsX}{\leftindex_{\text{ns}}{X}}
+\newcommand{\nsXl}{\leftindex_{\text{ns}}{X}^{(l)}}
+\newcommand{\nsXll}{\leftindex_{\text{ns}}{X}^{(l+1)}}
+\newcommand{\nsXk}{\leftindex_{\text{ns}}{X}^{(L)}}
+
+\newcommand{\Zl}{Z^{(l)}}
+\newcommand{\Zll}{Z^{(l+1)}}
+\newcommand{\Zk}{Z^{(L)}}
+
+\newcommand{\Tl}{T^{(l)}}
+\newcommand{\Tll}{T^{(l+1)}}
+\newcommand{\Tk}{T^{(L)}}
+\newcommand{\Tkopt}{T^{(L)*}}
+\newcommand{\Tkbar}{\bar{T}^{(L)}}
+
+\newcommand{\nsT}{\leftindex_{\text{ns}}{T}}
+\newcommand{\nsTl}{\leftindex_{\text{ns}}{T}^{(l)}}
+\newcommand{\nsTll}{\leftindex_{\text{ns}}{T}^{(l+1)}}
+\newcommand{\nsTk}{\leftindex_{\text{ns}}{T}^{(L)}}
+\newcommand{\nsTkopt}{\leftindex_{\text{ns}}{T}^{(L)*}}
+
+\newcommand{\Vl}{V^{(l)}}
+\newcommand{\Vll}{V^{(l+1)}}
+\newcommand{\Vk}{V^{(L)}}
+
+\newcommand{\Ul}{U^{(l)}}
+\newcommand{\Ull}{U^{(l+1)}}
+\newcommand{\Uk}{U^{(L)}}
+
+\newcommand{\Gnorm}{\calG_{\text{norm}}}
+\newcommand{\Tnorm}{\calT_{\text{norm}}}
+
+%% matrix operators
+\newcommand{\diag}{\text{diag}}
+
 %% Group Lasso %%
-\newcommand{\bi}{{i}}
+\newcommand{\bi}{{b_i}}
 \newcommand{\wi}{w_\bi}
+\newcommand{\bwi}{\bar{w}_\bi}
 \newcommand{\vi}{v_\bi}
 \newcommand{\ci}{c_\bi}
 \newcommand{\zi}{z_\bi}
@@ -269,10 +367,10 @@
 \newcommand{\wmin}{w^*}
 \newcommand{\solfn}{\calW^*}
 
-\newcommand{\Null}{\text{Null}}
 \newcommand{\Row}{\text{Row}}
 \newcommand{\Span}{\text{Span}}
 \newcommand{\Range}{\text{Range}}
+\newcommand{\Rank}{\text{Rank}}
 
 \newcommand{\Di}{\calD_{\bi}}
 \newcommand{\Si}{\calN_{\bi}}
@@ -303,5 +401,7 @@
 \newcommand{\rmin}{\rho^*}
 
 \newcommand{\vmin}{v^*}
-\newcommand{\diag}{\text{diag}}
 \newcommand{\nnz}{\text{nnz}}
+
+% truncated parameters
+\newcommand{\thetal}{\theta^{(l)}}
