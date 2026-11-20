@@ -116,13 +116,13 @@
 	\pause
 
 	\begin{itemize}
-		\item Let \( X \in \R^{n \times d} \) and \( y \in \R^{n \times c} \)
+		\item Let \( X \in \R^{n \times d_0} \) and \( y \in \R^{n \times c} \)
 		      be a \good{training set}.
 		      \pause
 		      \vspace{1ex}
 
-		\item Fix an \good{architecture} \( \Delta \), \good{loss function} \( \calL \), and
-		      \good{regularizer} \( R \).
+		\item Fix an \good{architecture} \( \Delta = \rbr{d_1, \ldots, d_{L-1}} \)
+		      and \good{loss function} \( \calL \).
 		      \pause
 		      \vspace{1ex}
 
@@ -135,7 +135,7 @@
 
 	\[
 		\textbf{Global Opt}: \, \, \theta^* \in
-		\argmin_{\theta \in \Delta} \calL(f_\theta(X), y) + R(\theta).
+		\argmin_{\theta \in \Delta} \calL(f_\theta(X), y).
 	\]
 	\pause
 
@@ -219,7 +219,7 @@
 	\pause
 	\horizontalrule
 
-	\textbf{Takeaways}:
+	\textbf{Takeaway}:
 	\pause
 	\begin{itemize}
 		\item LLMs like GPT-4 are \bad{huge} and \bad{extremely expensive} to
@@ -293,8 +293,9 @@
 		      \vspace{1ex}
 		      \pause
 
-		\item If \( \theta^* \) \bad{performs worse}, then the optimization
-		      objective is \good{miss-specified}.
+		\item If \( \theta^* \) \bad{performs worse}, then our training
+		      objectives are \good{miss-specified} --- we should solve a
+		      different problem!
 	\end{itemize}
 \end{frame}
 
@@ -357,13 +358,13 @@
 
 	Most results focus on \bad{two-layer ReLU networks}:
 	\citet{pilanci2020convex, sahiner2021vector, sahiner2022attention, wang2022hidden, mishkin2023optimal},
-	and \good{many others}.
+	and \good{others}.
 
 \end{frame}
 
 \begin{frame}{Linear Tensor Models: Our Goal}
 
-	\textbf{Goal}: Extend convex reformulations to \good{deep ReLU
+	\textbf{Our Goal}: Extend convex reformulations to \good{deep ReLU
 		networks}.
 
 	\pause
@@ -556,12 +557,12 @@
 		      \pause
 		      \vspace{1ex}
 
-		\item \textbf{Data Tensor}: \( X^{(2)}_{j_1} = D^{(1)}_{1} X \)
+		\item \textbf{Data Tensor}: \( X^{(2)}_{j_1} = \textcolor{violet}{D^{(1)}_{j_1}} X \)
 		      \pause
 		      \vspace{1ex}
 
 		\item \textbf{Linear Reduction Operator}:
-		      \( X^{(2)} \odot T^{(2)} = \sum_{j_1} X^{(2)}_{j_1} T^{(2)}_{j_1} \)
+		      \( \green{X^{(2)} \odot T^{(2)}} = \sum_{j_1} X^{(2)}_{j_1} T^{(2)}_{j_1} \)
 	\end{itemize}
 
 	\pause
@@ -570,7 +571,7 @@
 	\begin{align*}
 		f_\theta(X)
 		 & = \rbr{\rbr{\textcolor{brightpink}{\rbr{X W^{(1)}}_+ W^{(2)}}}_+ W^{(3)} \cdots }_+ W^{(L)} \\
-		 & = \rbr{\rbr{X^{(2)} \odot T^{(2)}}_+ W^{(3)} \cdots }_+ W^{(L)}.
+		 & = \rbr{\green{\rbr{X^{(2)} \odot T^{(2)}}}_+ W^{(3)} \cdots }_+ W^{(L)}.
 	\end{align*}
 
 	\pause
@@ -582,7 +583,7 @@
 
 	\begin{beamercolorbox}[wd=\textwidth,sep=1em]{result}
 		\textbf{Theorem}:
-		If \( d_l \geq m_l^* \), where \( m_l^* \leq n \) for every \( l \in [L-1] \),
+		If \( d_l \geq m_l^* \) (\( m_l^* \leq n \)) for every \( l \in [L-1] \),
 		then training the \( L \)-layer ReLU model,
 		\begin{equation*}
 			\min_{\theta} \calL\rbr{f_{\theta}(X), y},
@@ -654,7 +655,7 @@
 
 	\begin{itemize}
 		\item \( \bad{p_l} \) is the number of activation patterns \(
-		      D^{(l)}_{j} \) in the \( l^{\text{th}} \) layer.
+		      D^{(l)}_{j_l} \) in the \( l^{\text{th}} \) layer.
 
 		      \vspace{1ex}
 		      \pause
@@ -740,8 +741,8 @@
 		      \pause
 		      \vspace{1ex}
 
-		\item \textbf{Open Question}: is there a dimension-dependent
-		      bound like \( 4\ceil{n/d} \) for models with bias \citep{bubeck2020memorization}?
+		\item \textbf{Open Question}: is there a \underline{dimension-dependent}
+		      bound like the \( d_1 = 4\ceil{n/d} \) known for models with bias \citep{bubeck2020memorization}?
 
 	\end{itemize}
 
@@ -766,13 +767,13 @@
 	\pause
 	\vspace{1ex}
 
-	\textbf{Positive}: the expressivity of the model on \( X \) stagnates
+	\textbf{Fact 1}: the expressivity of the model on \( X \) stagnates
 	after \( l = 3 \).
 
 	\pause
 	\vspace{1ex}
 
-	\textbf{Negative}: the convex reformulation is \bad{exponential
+	\textbf{Fact 2}: the convex reformulation is \bad{exponential
 		size} unless only \( \log(n) \) examples have unique (signed) directions.
 
 	\pause
@@ -789,7 +790,7 @@
 		      \pause
 		      \vspace{0.5ex}
 		\item[$\longrightarrow$] Intuition:
-		      \( X^{(2)} = [D^{(1)}_{j_1} \cdots D^{(1)}_{p_1} X] \)
+		      \( X^{(2)} = [D^{(1)}_{j_1} X \cdots D^{(1)}_{p_1} X] \)
 		      is \good{massively over-complete}.
 	\end{itemize}
 
@@ -819,12 +820,12 @@
 	\pause
 
 	\begin{beamercolorbox}[wd=\textwidth,sep=1em]{result}
-		\textbf{Theorem}: A global solution to the \( L \)-layer
-		training problem
+		\textbf{Theorem}: If \( d_l \geq m_l^* \) (\( m_l^* \leq n \)) for every
+		\( l \in [L-1] \), then
 		\[
-			\min_{\theta} \calL(f_\theta(X), y),
+			\theta^* \in \argmin_{\theta} \calL(f_\theta(X), y),
 		\]
-		can be computed in \( O(n^2 d + n^3 + nc) \) time
+		can be computed in \( O(n^2 d_0 + n^3 + nc) \) time
 		using only the \good{representative activations} from \( \tilde{\calD} \).
 	\end{beamercolorbox}
 
@@ -860,10 +861,14 @@
 			}.
 		\]
 	\end{beamercolorbox}
+
+	\pause
+
 	\begin{itemize}
 		\item \( \textcolor{brightpink}{g(X, y)} \) measures the price
-		      you pay in model norm by restricting \( f_{\theta} \)
-		      to use only \good{representative activations} \( \tilde{\calD} \).
+		      you pay in the regularizer \( \norm{\theta}_F^2 \) by restricting 
+              \( f_{\theta} \) to use only the \good{representative activations} 
+              in \( \tilde{\calD} \).
 	\end{itemize}
 
 \end{frame}
@@ -881,7 +886,7 @@
 	\begin{center}
 		What about the space of \textbf{equivalent models}?
 		\[
-			\calS(\theta) = \cbr{\theta' : f_\theta(X) = f_{\theta'}(X)}.
+            \calS(\theta) = \cbr{\theta' : f_{\theta'}(X) = f_{\theta}(X)}.
 		\]
 	\end{center}
 
@@ -1014,9 +1019,9 @@
 	\vspace{1ex}
 
 	\begin{itemize}
-		\item \textbf{Regularization}. The set of ReLU networks is
-		      \bad{over-complete}; how do we add \good{regularization} to pick
-		      a good subset?
+		\item \textbf{Regularization}. ReLU networks are
+		      \bad{over-complete}; can we also study \good{regularized}  
+              problems using the tensor formulation?
 
 		      \pause
 		      \vspace{1ex}
@@ -1028,7 +1033,7 @@
 		      \pause
 		      \vspace{1ex}
 
-		\item \textbf{Training}. We need to compare
+		\item \textbf{Training}. We still need to compare
 		      \good{global optimization} against \bad{local methods};
 		      are training objectives \good{well-specified}?
 	\end{itemize}
