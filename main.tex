@@ -1039,18 +1039,4 @@
 	\printbibliography[]
 \end{frame}
 
-\begin{frame}{Bonus: Tensor Constraint Set}
-
-	Let \( T^{(l)} \in \R^{d_0 \times p_1 \times \cdots \times p_{l-1} \times d_{l}}
-	\) be a tensor in the low-rank set,
-	\[
-		\calG^{(l)} = \cbr{ T^{(l)} :
-			\exists \, T^{(l-1)} \in \calG^{(l-1)} \text{ s.t. }
-			T^{(l)}_j = \!\!\!\!\!\!\!\! \sum_{T^{(l-1)}_i \in \calK^{(l-1)}_j }
-			T_i^{(l-1)} \otimes W^{(l)}_i.
-		}
-	\]
-
-\end{frame}
-
 \end{document}
