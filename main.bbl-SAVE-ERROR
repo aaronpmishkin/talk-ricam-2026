@@ -19,6 +19,77 @@
 
 \refsection{0}
   \datalist[entry]{anyt/global//global/global/global}
+    \entry{bubeck2020memorization}{inproceedings}{}{}
+      \name{author}{4}{}{%
+        {{hash=3d51ee91b7d20d2f26b221a8a3b8b72c}{%
+           family={Bubeck},
+           familyi={B\bibinitperiod},
+           given={Sébastien},
+           giveni={S\bibinitperiod}}}%
+        {{hash=27421e7dfe018659c3d41261cfb55892}{%
+           family={Eldan},
+           familyi={E\bibinitperiod},
+           given={Ronen},
+           giveni={R\bibinitperiod}}}%
+        {{hash=30150e84c87cbb9a8a6682b2ea5c800c}{%
+           family={Lee},
+           familyi={L\bibinitperiod},
+           given={Yin\bibnamedelima Tat},
+           giveni={Y\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
+        {{hash=5aea0add93772aef76130d8464ecc7c2}{%
+           family={Mikulincer},
+           familyi={M\bibinitperiod},
+           given={Dan},
+           giveni={D\bibinitperiod}}}%
+      }
+      \name{editor}{5}{}{%
+        {{hash=42a970b0a0f1ed24b23064370cc9392f}{%
+           family={Larochelle},
+           familyi={L\bibinitperiod},
+           given={Hugo},
+           giveni={H\bibinitperiod}}}%
+        {{hash=6d93a2b5e4e1f368f5ffe4344bfec8ef}{%
+           family={Ranzato},
+           familyi={R\bibinitperiod},
+           given={Marc'Aurelio},
+           giveni={M\bibinitperiod}}}%
+        {{hash=dc7c14ebfc2b431292d1ff4ded63d5e7}{%
+           family={Hadsell},
+           familyi={H\bibinitperiod},
+           given={Raia},
+           giveni={R\bibinitperiod}}}%
+        {{hash=cc044fe1286d34711800ba57507df30a}{%
+           family={Balcan},
+           familyi={B\bibinitperiod},
+           given={Maria{-}Florina},
+           giveni={M\bibinitperiod}}}%
+        {{hash=ec4aa4123f07d57016afedecdf45ed9e}{%
+           family={Lin},
+           familyi={L\bibinitperiod},
+           given={Hsuan{-}Tien},
+           giveni={H\bibinitperiod}}}%
+      }
+      \strng{namehash}{02379f308be3e2798c283124bed4b783}
+      \strng{fullhash}{0f1f28652dbc4234c38eb4407fe8260a}
+      \strng{fullhashraw}{0f1f28652dbc4234c38eb4407fe8260a}
+      \strng{bibnamehash}{02379f308be3e2798c283124bed4b783}
+      \strng{authorbibnamehash}{02379f308be3e2798c283124bed4b783}
+      \strng{authornamehash}{02379f308be3e2798c283124bed4b783}
+      \strng{authorfullhash}{0f1f28652dbc4234c38eb4407fe8260a}
+      \strng{authorfullhashraw}{0f1f28652dbc4234c38eb4407fe8260a}
+      \strng{editorbibnamehash}{4cf660a37a0b51cf987caa2c88fb2930}
+      \strng{editornamehash}{4cf660a37a0b51cf987caa2c88fb2930}
+      \strng{editorfullhash}{26d0f2bcddce8acfecdf6413bf3f7b3d}
+      \strng{editorfullhashraw}{26d0f2bcddce8acfecdf6413bf3f7b3d}
+      \field{labelalpha}{Bub+20}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Advances in Neural Information Processing Systems 33: Annual Conference on Neural Information Processing Systems 2020, NeurIPS 2020, December 6-12, 2020, virtual}
+      \field{title}{Network size and size of the weights in memorization with two-layers neural networks}
+      \field{year}{2020}
+    \endentry
     \entry{ergen2021global}{inproceedings}{}{}
       \name{author}{2}{}{%
         {{hash=d88321941c8045797c0aaaa64a29e805}{%
@@ -164,6 +235,79 @@
       \verb https://openreview.net/forum?id=4xWQS2z77v
       \endverb
     \endentry
+    \entry{mishkin2023optimal}{inproceedings}{}{}
+      \name{author}{2}{}{%
+        {{hash=1aa95c31f528fc007e7b0e789363afe3}{%
+           family={Mishkin},
+           familyi={M\bibinitperiod},
+           given={Aaron},
+           giveni={A\bibinitperiod}}}%
+        {{hash=5d26b754e75f4129f15bf3882c34f70e}{%
+           family={Pilanci},
+           familyi={P\bibinitperiod},
+           given={Mert},
+           giveni={M\bibinitperiod}}}%
+      }
+      \name{editor}{6}{}{%
+        {{hash=112eb0b147c4a7f674d015a86e5dea70}{%
+           family={Krause},
+           familyi={K\bibinitperiod},
+           given={Andreas},
+           giveni={A\bibinitperiod}}}%
+        {{hash=d94fdf38ad71e8210b4505c8fbb7fa87}{%
+           family={Brunskill},
+           familyi={B\bibinitperiod},
+           given={Emma},
+           giveni={E\bibinitperiod}}}%
+        {{hash=3da7501a79d9346572c7fd6e41b615df}{%
+           family={Cho},
+           familyi={C\bibinitperiod},
+           given={Kyunghyun},
+           giveni={K\bibinitperiod}}}%
+        {{hash=ca6c8866884502e2e8d407df0fce29d3}{%
+           family={Engelhardt},
+           familyi={E\bibinitperiod},
+           given={Barbara},
+           giveni={B\bibinitperiod}}}%
+        {{hash=0dafa6bad2e178837ff918538e24226a}{%
+           family={Sabato},
+           familyi={S\bibinitperiod},
+           given={Sivan},
+           giveni={S\bibinitperiod}}}%
+        {{hash=8bff09c02d42ded468c8b33a7e2738c7}{%
+           family={Scarlett},
+           familyi={S\bibinitperiod},
+           given={Jonathan},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {PMLR}%
+      }
+      \strng{namehash}{6f20e34967e1c5b81ce2b8ef5a4d8aa9}
+      \strng{fullhash}{6f20e34967e1c5b81ce2b8ef5a4d8aa9}
+      \strng{fullhashraw}{6f20e34967e1c5b81ce2b8ef5a4d8aa9}
+      \strng{bibnamehash}{6f20e34967e1c5b81ce2b8ef5a4d8aa9}
+      \strng{authorbibnamehash}{6f20e34967e1c5b81ce2b8ef5a4d8aa9}
+      \strng{authornamehash}{6f20e34967e1c5b81ce2b8ef5a4d8aa9}
+      \strng{authorfullhash}{6f20e34967e1c5b81ce2b8ef5a4d8aa9}
+      \strng{authorfullhashraw}{6f20e34967e1c5b81ce2b8ef5a4d8aa9}
+      \strng{editorbibnamehash}{134fce1f5ad57ab5067b59de0a64293f}
+      \strng{editornamehash}{134fce1f5ad57ab5067b59de0a64293f}
+      \strng{editorfullhash}{5775b0ea111287e7ae6740b390430eb1}
+      \strng{editorfullhashraw}{5775b0ea111287e7ae6740b390430eb1}
+      \field{labelalpha}{MP23}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{International Conference on Machine Learning, {ICML} 2023, 23-29 July 2023, Honolulu, Hawaii, {USA}}
+      \field{series}{Proceedings of Machine Learning Research}
+      \field{title}{Optimal Sets and Solution Paths of {ReLU} Networks}
+      \field{volume}{202}
+      \field{year}{2023}
+      \field{pages}{24888\bibrangedash 24924}
+      \range{pages}{37}
+    \endentry
     \entry{pilanci2020convex}{inproceedings}{}{}
       \name{author}{2}{}{%
         {{hash=5d26b754e75f4129f15bf3882c34f70e}{%
@@ -200,6 +344,144 @@
       \field{year}{2020}
       \field{pages}{7695\bibrangedash 7705}
       \range{pages}{11}
+    \endentry
+    \entry{sahiner2021vector}{inproceedings}{}{}
+      \name{author}{4}{}{%
+        {{hash=69296a5f6c91837d06aeb73a79a25058}{%
+           family={Sahiner},
+           familyi={S\bibinitperiod},
+           given={Arda},
+           giveni={A\bibinitperiod}}}%
+        {{hash=d88321941c8045797c0aaaa64a29e805}{%
+           family={Ergen},
+           familyi={E\bibinitperiod},
+           given={Tolga},
+           giveni={T\bibinitperiod}}}%
+        {{hash=28d7a949d60b8769712903fbd7ea0aa8}{%
+           family={Pauly},
+           familyi={P\bibinitperiod},
+           given={John\bibnamedelima M.},
+           giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=5d26b754e75f4129f15bf3882c34f70e}{%
+           family={Pilanci},
+           familyi={P\bibinitperiod},
+           given={Mert},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {OpenReview.net}%
+      }
+      \strng{namehash}{5a4d36055aeb84a39a6799a956336cb3}
+      \strng{fullhash}{469ada5f95b72a978ee4f175947aea8b}
+      \strng{fullhashraw}{469ada5f95b72a978ee4f175947aea8b}
+      \strng{bibnamehash}{5a4d36055aeb84a39a6799a956336cb3}
+      \strng{authorbibnamehash}{5a4d36055aeb84a39a6799a956336cb3}
+      \strng{authornamehash}{5a4d36055aeb84a39a6799a956336cb3}
+      \strng{authorfullhash}{469ada5f95b72a978ee4f175947aea8b}
+      \strng{authorfullhashraw}{469ada5f95b72a978ee4f175947aea8b}
+      \field{extraname}{1}
+      \field{labelalpha}{Sah+21}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{9th International Conference on Learning Representations, {ICLR} 2021, Virtual Event, Austria, May 3-7, 2021}
+      \field{title}{Vector-output {ReLU} Neural Network Problems are Copositive Programs: Convex Analysis of Two Layer Networks and Polynomial-time Algorithms}
+      \field{year}{2021}
+    \endentry
+    \entry{sahiner2022attention}{inproceedings}{}{}
+      \name{author}{6}{}{%
+        {{hash=69296a5f6c91837d06aeb73a79a25058}{%
+           family={Sahiner},
+           familyi={S\bibinitperiod},
+           given={Arda},
+           giveni={A\bibinitperiod}}}%
+        {{hash=d88321941c8045797c0aaaa64a29e805}{%
+           family={Ergen},
+           familyi={E\bibinitperiod},
+           given={Tolga},
+           giveni={T\bibinitperiod}}}%
+        {{hash=3d0fb2fb8ace7fb4e8615d73d2c885af}{%
+           family={Ozturkler},
+           familyi={O\bibinitperiod},
+           given={Batu},
+           giveni={B\bibinitperiod}}}%
+        {{hash=28d7a949d60b8769712903fbd7ea0aa8}{%
+           family={Pauly},
+           familyi={P\bibinitperiod},
+           given={John\bibnamedelima M.},
+           giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=f748ee717de2f584b77f2adcaa39ac4f}{%
+           family={Mardani},
+           familyi={M\bibinitperiod},
+           given={Morteza},
+           giveni={M\bibinitperiod}}}%
+        {{hash=5d26b754e75f4129f15bf3882c34f70e}{%
+           family={Pilanci},
+           familyi={P\bibinitperiod},
+           given={Mert},
+           giveni={M\bibinitperiod}}}%
+      }
+      \name{editor}{6}{}{%
+        {{hash=050c0df95e5eb5c3218fdd148d0e17a4}{%
+           family={Chaudhuri},
+           familyi={C\bibinitperiod},
+           given={Kamalika},
+           giveni={K\bibinitperiod}}}%
+        {{hash=83a44c18acfaa38fa9f6ba76cfdc0132}{%
+           family={Jegelka},
+           familyi={J\bibinitperiod},
+           given={Stefanie},
+           giveni={S\bibinitperiod}}}%
+        {{hash=da5283630e781fb48ecf4859f54bca52}{%
+           family={Song},
+           familyi={S\bibinitperiod},
+           given={Le},
+           giveni={L\bibinitperiod}}}%
+        {{hash=98b0d29966f947460b3eb25590bfa7b5}{%
+           family={Szepesvári},
+           familyi={S\bibinitperiod},
+           given={Csaba},
+           giveni={C\bibinitperiod}}}%
+        {{hash=86a8bc54ad4440c98093d56ca91cc28a}{%
+           family={Niu},
+           familyi={N\bibinitperiod},
+           given={Gang},
+           giveni={G\bibinitperiod}}}%
+        {{hash=0dafa6bad2e178837ff918538e24226a}{%
+           family={Sabato},
+           familyi={S\bibinitperiod},
+           given={Sivan},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {PMLR}%
+      }
+      \strng{namehash}{5a4d36055aeb84a39a6799a956336cb3}
+      \strng{fullhash}{65ff5ff0a62ea62455e03a8bb3fa9cbe}
+      \strng{fullhashraw}{65ff5ff0a62ea62455e03a8bb3fa9cbe}
+      \strng{bibnamehash}{5a4d36055aeb84a39a6799a956336cb3}
+      \strng{authorbibnamehash}{5a4d36055aeb84a39a6799a956336cb3}
+      \strng{authornamehash}{5a4d36055aeb84a39a6799a956336cb3}
+      \strng{authorfullhash}{65ff5ff0a62ea62455e03a8bb3fa9cbe}
+      \strng{authorfullhashraw}{65ff5ff0a62ea62455e03a8bb3fa9cbe}
+      \strng{editorbibnamehash}{4d1e7770366aa87da47b1c8393d68dc6}
+      \strng{editornamehash}{4d1e7770366aa87da47b1c8393d68dc6}
+      \strng{editorfullhash}{7966d3f9a1fb9adfd5b04ec5ef3ec4cc}
+      \strng{editorfullhashraw}{7966d3f9a1fb9adfd5b04ec5ef3ec4cc}
+      \field{extraname}{2}
+      \field{labelalpha}{Sah+22}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{International Conference on Machine Learning, {ICML} 2022, 17-23 July 2022, Baltimore, Maryland, {USA}}
+      \field{series}{Proceedings of Machine Learning Research}
+      \field{title}{Unraveling Attention via Convex Duality: Analysis and Interpretations of Vision Transformers}
+      \field{volume}{162}
+      \field{year}{2022}
+      \field{pages}{19050\bibrangedash 19088}
+      \range{pages}{39}
     \endentry
     \entry{wang2023parallel}{inproceedings}{}{}
       \name{author}{3}{}{%
@@ -238,6 +520,44 @@
       \field{booktitle}{The Eleventh International Conference on Learning Representations, {ICLR} 2023, Kigali, Rwanda, May 1-5, 2023}
       \field{title}{Parallel Deep Neural Networks Have Zero Duality Gap}
       \field{year}{2023}
+    \endentry
+    \entry{wang2022hidden}{inproceedings}{}{}
+      \name{author}{3}{}{%
+        {{hash=078e53d5cbeeedb4372c9238aa58075b}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Yifei},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=6bb769e7f1b865f9ab5e348c9806d1a3}{%
+           family={Lacotte},
+           familyi={L\bibinitperiod},
+           given={Jonathan},
+           giveni={J\bibinitperiod}}}%
+        {{hash=5d26b754e75f4129f15bf3882c34f70e}{%
+           family={Pilanci},
+           familyi={P\bibinitperiod},
+           given={Mert},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {OpenReview.net}%
+      }
+      \strng{namehash}{dd94e2727a3dc154dc03594ee8ba8103}
+      \strng{fullhash}{dd94e2727a3dc154dc03594ee8ba8103}
+      \strng{fullhashraw}{dd94e2727a3dc154dc03594ee8ba8103}
+      \strng{bibnamehash}{dd94e2727a3dc154dc03594ee8ba8103}
+      \strng{authorbibnamehash}{dd94e2727a3dc154dc03594ee8ba8103}
+      \strng{authornamehash}{dd94e2727a3dc154dc03594ee8ba8103}
+      \strng{authorfullhash}{dd94e2727a3dc154dc03594ee8ba8103}
+      \strng{authorfullhashraw}{dd94e2727a3dc154dc03594ee8ba8103}
+      \field{labelalpha}{WLP22}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{The Tenth International Conference on Learning Representations, {ICLR} 2022, Virtual Event, April 25-29, 2022}
+      \field{title}{The Hidden Convex Optimization Landscape of Regularized Two-Layer ReLU Networks: an Exact Characterization of Optimal Solutions}
+      \field{year}{2022}
     \endentry
     \entry{zhang2017understanding}{inproceedings}{}{}
       \name{author}{5}{}{%

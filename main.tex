@@ -74,6 +74,8 @@
 \definecolor{byzantine}{rgb}{0.59, 0.44, 0.09}
 \definecolor{ultramarine}{rgb}{0.07, 0.04, 0.56}
 \definecolor{brightpink}{rgb}{1.0, 0.0, 0.5}
+\definecolor{violet}{rgb}{0.5, 0, 1.0}
+\definecolor{mikadoyellow}{rgb}{1.0,0.3,0.0}
 
 % toggle plotting tikz
 \def\showtikz{}
@@ -244,9 +246,9 @@
 
 	\begin{figure}
 		\centering
-		\phantom{\includegraphics<-3>[width=1\textwidth]{assets/chat_gpt.png}}
-		\includegraphics<4>[width=\textwidth]{assets/chat_gpt.png}
-		\includegraphics<5->[width=\textwidth]{assets/chat_gpt_outlined.png}
+		\phantom{\includegraphics<-2>[width=1\textwidth]{assets/chat_gpt.png}}
+		\includegraphics<3>[width=\textwidth]{assets/chat_gpt.png}
+		\includegraphics<4->[width=\textwidth]{assets/chat_gpt_outlined.png}
 	\end{figure}
 \end{frame}
 
@@ -285,14 +287,14 @@
 		      \vspace{1ex}
 		      \pause
 
-		\item We hope that \( \theta^* \) performs better:
-		      higher-quality output, improved alignment, safer, etc.
+		\item We hope that \( \theta^* \) \good{performs better}:
+		      global optimization should improve (pre)-training, model alignment, etc.
 
 		      \vspace{1ex}
 		      \pause
 
-		\item If not, at least we can \good{learn something}
-		      about the pre-training/fine-tuning problems and their solutions.
+		\item If \( \theta^* \) \bad{performs worse}, then the optimization
+		      objective is \good{miss-specified}.
 	\end{itemize}
 \end{frame}
 
@@ -306,18 +308,18 @@
 
 	\textbf{Contributions}
 	\begin{itemize}
-		\item Show that every \bad{ReLU network} \( f_\theta \) corresponds
-		      to a \good{linear tensor model} on an expanded data basis.
+		\item We show that every \bad{ReLU network} \( f_\theta \) corresponds
+		      to a \good{linear tensor model} \( \Tk \) on an expanded data basis \( \Xk \).
 		      \pause
 		      \vspace{1.5ex}
 
-		\item Leverage this perspective for polynomial-time \good{memorization}
+		\item We leverage this perspective for polynomial-time \good{memorization}
 		      and \good{approximation} with ReLU networks.
 		      \pause
 		      \vspace{1.5ex}
 
-		\item Expose the entire set \bad{ReLU parameter symmetries} by
-		      studying the \good{expanded data basis}.
+		\item We also expose the entire set of \bad{ReLU parameter symmetries}
+		      by studying the \good{expanded data basis}.
 	\end{itemize}
 
 \end{frame}
@@ -326,12 +328,12 @@
 \begin{frame}{}
 	\begin{center}
 		\huge
-		2. Background on Convex Reformulations
+		2. Deriving the Linear Tensor Model
 	\end{center}
 \end{frame}
 \setbeamercolor{background canvas}{bg=white}
 
-\begin{frame}{Convex Reformulations: Flavor of Results}
+\begin{frame}{Linear Tensor Models: Flavor of Results}
 
 	\textbf{Basic Idea}: We start with a \bad{non-convex} optimization problem
 	and derive an equivalent \good{convex} program.
@@ -350,30 +352,138 @@
 		      a global minimum \( v^* \) of the other.
 	\end{itemize}
 
+	\pause
+	\vspace{2ex}
+
+	Most results focus on \bad{two-layer ReLU networks}:
+	\citet{pilanci2020convex, sahiner2021vector, sahiner2022attention, wang2022hidden, mishkin2023optimal},
+	and \good{many others}.
+
 \end{frame}
 
-\begin{frame}{Convex Reformulations: Two-Layer ReLU Networks}
+\begin{frame}{Linear Tensor Models: Our Goal}
 
-	{\large \bad{Non-Convex Problem} (NC-ReLU)}
-	\[
-		\min_{W^{(1)}, W^{(2)}} \underbrace{\half \norm{\sum_{j=1}^{m_1}
-				(X W^{(1)}_{\cdot, j})_+ W^{(2)}_{j} - y}_2^2}_{\text{Squared Error}}
-		+ \underbrace{\lambda \sum_{j=1}^m \norm{W^{(1)}_{\cdot, j}}_2^2
-			+ \norm{W^{(2)}_{j}}_2^2}_{\text{Weight Decay}},
-	\]
-	where \( \rbr{z}_+ = \max\cbr{z, 0} \), \( X \in \R^{n \times d} \), and
-	\( y \in \R^{n} \).
+	\textbf{Goal}: Extend convex reformulations to \good{deep ReLU
+		networks}.
+
+	\pause
+	\vspace{1ex}
+	\begin{columns}
+		\column{0.5\textwidth}
+		\begin{itemize}
+			\item<2-> Previous work is limited to \bad{deep parallel
+				      networks} \citep{ergen2021global, wang2023parallel}.
+			      \vspace{1ex}
+
+			\item<3-> We abandon strong duality and argue by \good{reductions}.
+		\end{itemize}
+		\column{0.5\textwidth}
+		\begin{center}
+			\input{assets/parallel_network.tex}
+			%Parallel Neural Network
+		\end{center}
+	\end{columns}
+
+	\source{Figure taken from \citet{kim2025exploring}.}
+
+\end{frame}
+
+\begin{frame}{Linear Tensor Models: Hierarchy of Difficulty}
+
+	\vspace{-2ex}
+	\begin{center}
+		\input{assets/difficulty.tex}
+	\end{center}
 	\pause
 
-	\begin{figure}[]
-		\centering
-		\ifdefined\showtikz
-			\input{assets/neural_net}
-		\else
-			\Huge Neural Network Figure
-		\fi
-	\end{figure}
+	\vspace{-2ex}
+	\begin{columns}[c]
+		\begin{column}{0.33\textwidth}
+			\begin{center}
+				\underline{Linear Models}
+				\[
+					{\scriptstyle X W^{(1)} }
+				\]
 
+				\good{Linear} combination of inputs\\
+				\vspace{0.5ex}
+
+				(Classical)
+			\end{center}
+		\end{column}
+		\pause
+		\begin{column}{0.33\textwidth}
+			\begin{center}
+				\underline{Two-Layer Networks}
+				\[
+					{\scriptstyle \rbr{X W^{(1)}}_+ W^{(2)}}
+				\]
+
+				\good{Linear} combination of \bad{non-linear}\\
+				\vspace{0.5ex}
+
+				(Pilanci et al.)
+			\end{center}
+		\end{column}
+		\pause
+		\begin{column}{0.34\textwidth}
+			\begin{center}
+				\underline{\( L \)-Layer Networks}
+				\[
+					{\scriptstyle \rbr{\rbr{X W^{(1)}}_+ W^{(2)}}_+ W^{(3)} \, \cdots }
+				\]
+
+				\bad{Non-linear} combin.\ of \bad{non-linear}\\
+				\vspace{0.5ex}
+
+				(This work)
+			\end{center}
+		\end{column}
+	\end{columns}
+
+	\pause
+	\vspace{2ex}
+	\horizontalrule
+	\vspace{1ex}
+
+	\textbf{Strategy}: If we can replace \( 2 \)-layer modules with a linear
+	model, then we can iteratively linearize \good{\( L \)-layer} networks for any \( L \geq 2 \).
+
+\end{frame}
+
+\begin{frame}{Linear Tensor Models: Layer Elimination}
+
+	Let \( W^{(l)} \in \R^{d_{l-1} \times d_l} \) and
+	consider the \( L \)-layer ReLU network
+	\[
+		f_\theta(X) =
+		\rbr{\rbr{\textcolor{brightpink}{\rbr{X W^{(1)}}_+ W^{(2)}}}_+ W^{(3)} \cdots }_+ W^{(L)}.
+	\]
+
+	\pause
+	\horizontalrule
+
+	\textbf{Question}: how do we linearize this module?
+
+	\pause
+	\vspace{1ex}
+
+	\begin{enumerate}
+		\item \citet{pilanci2020convex} have already shown us that
+		      \[
+			      \rbr{X W^{(1)}}_+ W^{(2)}
+			      = \sum_{j_1 = 1}^{p_1} \textcolor{violet}{D^{(1)}_{j_1}} X \textcolor{mikadoyellow}{T^{(2)}_{j_1}},
+		      \]
+		      \pause
+		      \begin{itemize}
+			      \item \( \textcolor{violet}{D_{j_1}^{(1)}} \) linearizes the ReLU:
+			            \( \textcolor{violet}{D_{j_1}^{(1)}} X W^{(1)}_{\cdot, j_1} = \rbr{X W^{(1)}_{\cdot, j_1}}_+ \).
+			            \pause
+			            \vspace{0.5ex}
+			      \item The parameter \( \textcolor{mikadoyellow}{T^{(2)}_{j_1}} \) is constrained
+			            to a subspace \( \calC^{(1)}_{j_1} \).
+		      \end{itemize}
+	\end{enumerate}
 \end{frame}
 
 \begin{frame}{Aside: ReLU Activation Patterns}
@@ -436,192 +546,35 @@
 
 \end{frame}
 
-\begin{frame}{Convex Reformulations: Convex Problem}
-
-	{\large \good{Convex Reformulation} (C-ReLU)} \citep{pilanci2020convex}
-	\[
-		\begin{aligned}
-			\min_{v, w} & \half \norm{\sum_{j=1}^{p_1} \textcolor{brightpink}{D^{(1)}_j X (v_j - w_j)} - y}_2^2 +
-			\lambda \sum_{j=1}^{p_1} \norm{v_j}_2 + \norm{w_j}_2                                                  \\
-			            & \hspace{0.2em} \text{s.t. }
-			\textcolor{brightpink}{v_j, w_j \in \calK^{(1)}_j} :=
-			\big\{w : \underbrace{(2D^{(1)}_j - I) X w \geq 0}_{\iff \rbr{X w}_+ = D^{(1)}_j X w}\big\},
-		\end{aligned}
-	\]
-	where \( p_1 \) is the number of unique activation patterns.
-	\pause
-
-	\begin{figure}[]
-		\centering
-		\ifdefined\showtikz
-			\input{assets/convex_reformulation}
-		\else
-			\Huge convex reformulation figure
-		\fi
-	\end{figure}
-\end{frame}
-
-\begin{frame}{Convex Reformulations: Hardness}
-
-	\textbf{Key Result}: if network width \( m \) satisfies \( m \geq m^* \)
-	for some \( m^* \leq n \), then C-ReLU and NC-ReLU are \good{equivalent}
-	\citep{pilanci2020convex}.
-
-	\pause
-	\horizontalrule
-
-	How \textbf{hard} is the convex program?
-	\pause
-
-	\[
-		p_1 = \abs{\cbr{D_j = \text{diag}[\mathbbm{1}(X g_j \geq 0)] : g_j \in \R^d }}
-	\]
-
-	\vspace{2em}
-	\pause
-
-	The \textbf{convex program} is:
-	\vspace{0.5em}
+\begin{frame}{Linear Tensor Models: Putting it Together}
 	\begin{itemize}
-		\item \bad{Exponential in general}: \( p_1 \in O(r \cdot (\frac{n}{r})^r) \),
-		      where \( r = \text{rank}(X) \).
-
+		\item \textbf{Linearization}:
+		      \(
+		      \rbr{X W^{(1)}}_+ W^{(2)}
+		      = \sum_{j_1 = 1}^{p_1} \textcolor{violet}{D^{(1)}_{j_1}} X \textcolor{mikadoyellow}{T^{(2)}_{j_1}},
+		      \)
 		      \pause
-		      \vspace{1em}
+		      \vspace{1ex}
 
-		\item \good{Highly structured} --- it's a linear model!
+		\item \textbf{Data Tensor}: \( X^{(2)}_{j_1} = D^{(1)}_{1} X \)
+		      \pause
+		      \vspace{1ex}
+
+		\item \textbf{Linear Reduction Operator}:
+		      \( X^{(2)} \odot T^{(2)} = \sum_{j_1} X^{(2)}_{j_1} T^{(2)}_{j_1} \)
 	\end{itemize}
 
-	\vspace{1em}
-	\pause
-
-	\textbf{Takeaway}: We exchange one kind of hardness for another.
-
-\end{frame}
-
-\setbeamercolor{background canvas}{bg=LightCyan}
-\begin{frame}{}
-	\begin{center}
-		\huge
-		3. Linear Tensor Models
-	\end{center}
-\end{frame}
-\setbeamercolor{background canvas}{bg=white}
-
-\begin{frame}{Linear Tensor Models: Big Idea}
-
-	\textbf{Big Idea}: Extend convex reformulations to \good{deep ReLU
-		networks}.
-
-	\pause
-	\vspace{1ex}
-	\begin{columns}
-		\column{0.5\textwidth}
-		\begin{itemize}
-			\item<2-> Previous work is limited to \bad{deep parallel
-				      networks} \citep{ergen2021global, wang2023parallel}.
-			      \vspace{1ex}
-
-			\item<3-> We abandon strong duality and argue by \good{reductions}.
-		\end{itemize}
-		\column{0.5\textwidth}
-		\begin{center}
-			\input{assets/parallel_network.tex}
-			%Parallel Neural Network
-		\end{center}
-	\end{columns}
-
-	\source{Figure taken from \citet{kim2025exploring}.}
-
-\end{frame}
-
-\begin{frame}{Linear Tensor Models: Hierarchy of Difficulty}
-
-	\vspace{-2ex}
-	\begin{center}
-		\input{assets/difficulty.tex}
-	\end{center}
-	\pause
-
-	\vspace{-2ex}
-	\begin{columns}[c]
-		\begin{column}{0.33\textwidth}
-			\begin{center}
-				\underline{Linear Models}
-				\[
-					{\scriptstyle X W^{(1)} }
-				\]
-
-				\good{Linear} combination of inputs.
-			\end{center}
-		\end{column}
-		\pause
-		\begin{column}{0.33\textwidth}
-			\begin{center}
-				\underline{Two-Layer Networks}
-				\[
-					{\scriptstyle \rbr{X W^{(1)}}_+ W^{(2)}}
-				\]
-
-				\good{Linear} combination of \bad{non-linear}.
-			\end{center}
-		\end{column}
-		\pause
-		\begin{column}{0.34\textwidth}
-			\begin{center}
-				\underline{\( L \)-Layer Networks}
-				\[
-					{\scriptstyle \rbr{\rbr{X W^{(1)}}_+ W^{(2)}}_+ W^{(3)} \, \cdots }
-				\]
-
-				\bad{Non-linear} combin.\ of \bad{non-linear}.
-			\end{center}
-		\end{column}
-	\end{columns}
-
-	\pause
-	\vspace{2ex}
-	\horizontalrule
-	\vspace{1ex}
-
-	\textbf{Strategy}: If we can convexify \( 3 \)-layer modules, then we
-	can iteratively convexify \good{\( L \)-layer} networks for any \( L \geq 3 \).
-
-\end{frame}
-
-\begin{frame}{Linear Tensor Models: Layer Elimination}
-
-	Let \( W^{(l)} \in \R^{d_{l-1} \times d_l} \) and
-	consider the \( L \)-layer ReLU network
-	\[
-		f_\theta(X) =
-		\rbr{\rbr{\textcolor{brightpink}{\rbr{X W^{(1)}}_+ W^{(2)}}}_+ W^{(3)} \cdots }_+ W^{(L)}.
-	\]
-
 	\pause
 	\horizontalrule
-
-	\textbf{Question}: how do we construct a \good{convex reformulation}?
+	\vspace{1ex}
+	\begin{align*}
+		f_\theta(X)
+		 & = \rbr{\rbr{\textcolor{brightpink}{\rbr{X W^{(1)}}_+ W^{(2)}}}_+ W^{(3)} \cdots }_+ W^{(L)} \\
+		 & = \rbr{\rbr{X^{(2)} \odot T^{(2)}}_+ W^{(3)} \cdots }_+ W^{(L)}.
+	\end{align*}
 
 	\pause
-	\vspace{1ex}
-
-	\begin{enumerate}
-		\item The first \good{two-layer block} has a convex reformulation,
-		      \[
-			      f_\theta(X) = \bigg(\bigg(
-			      \underbrace{
-				      \textcolor{brightpink}{\sum_{i=1}^p D^{(1)}_i X T_i^{(2)}}
-			      }_{X^{(2)} \odot T^{(2)}}\bigg)_+
-			      \otimes W_i^{(3)} \cdots \bigg)_+ W^{(L)}.
-		      \]
-		      \pause
-		      %\vspace{0.5ex}
-
-		\item This creates another \good{two-layer block}, which has a convex
-		      reformulation in terms of
-		      \( X^{(2)} = [D_1^{(1)} X \ldots D_{p_1}^{(1)} X] \).
-	\end{enumerate}
+	Now we have a crank to turn\dots
 
 \end{frame}
 
@@ -780,8 +733,8 @@
 		      \pause
 		      \vspace{1ex}
 
-		\item \textbf{Open Question}: can this be improved to a dimension-dependent
-		      bound like \( O(n/d) \) \citep{bubeck2020memorization}?
+		\item \textbf{Open Question}: is there a dimension-dependent
+		      bound like \( 4\ceil{n/d} \) for models with bias \citep{bubeck2020memorization}?
 
 	\end{itemize}
 
@@ -800,22 +753,23 @@
 				p_l & = 2^{n_{s}}                          & \mbox{if \( l > 1 \)}.
 			\end{aligned}
 		\end{equation*}
+		\vspace{-1ex}
 	\end{beamercolorbox}
 
 	\pause
-	\vspace{2ex}
+	\vspace{1ex}
 
 	\textbf{Positive}: the expressivity of the model on \( X \) stagnates
 	after \( l = 3 \).
 
 	\pause
-	\vspace{2ex}
+	\vspace{1ex}
 
 	\textbf{Negative}: the convex reformulation is \bad{exponential
 		size} unless only \( \log(n) \) examples have unique (signed) directions.
 
 	\pause
-	\vspace{2ex}
+	\vspace{1ex}
 
 	\textbf{What Next?} Is polynomial time fitting still possible?
 
@@ -825,6 +779,11 @@
 	\begin{itemize}
 		\item[$\longrightarrow$] \good{Yes!} But we need restrict the
 		      activations to a basis of \( D^{(l)} \).
+		      \pause
+		      \vspace{0.5ex}
+		\item[$\longrightarrow$] Intuition:
+		      \( X^{(2)} = [D^{(1)}_{j_1} \cdots D^{(1)}_{p_1} X] \)
+		      is \good{massively over-complete}.
 	\end{itemize}
 
 \end{frame}
@@ -854,14 +813,13 @@
 
 	\begin{beamercolorbox}[wd=\textwidth,sep=1em]{result}
 		\textbf{Theorem}: A global solution to the \( L \)-layer
-		ReLU network training problem
+		training problem
 		\[
 			\min_{\theta} \calL(f_\theta(X), y),
 		\]
 		can be computed in \( O(n^2 d + n^3 + nc) \) time
-		using only the \good{``representative activations''} from \( \tilde{\calD} \).
+		using only the \good{representative activations} from \( \tilde{\calD} \).
 	\end{beamercolorbox}
-	\pause
 
 	%\begin{itemize}
 	%    \item Does not contradict \bad{NP-Hardness} because
@@ -880,7 +838,7 @@
 
 	\begin{beamercolorbox}[wd=\textwidth,sep=1em]{result}
 		\textbf{Theorem}:
-		If \( L = 2 \) and \( c = 1 \), then \( \theta' \) with sub-optimality
+		If \( L = 2 \) and \( c = 1 \), then \( \tilde{\theta} \) with sub-optimality
 		\begin{equation*}
 			\tilde{p} - p^*
 			\leq 2 \lambda \textcolor{brightpink}{g(X, y)}
@@ -898,7 +856,7 @@
 	\begin{itemize}
 		\item \( \textcolor{brightpink}{g(X, y)} \) measures the price
 		      you pay in model norm by restricting \( f_{\theta} \)
-              to use only \good{representative activations} \( \tilde{\calD} \).
+		      to use only \good{representative activations} \( \tilde{\calD} \).
 	\end{itemize}
 
 \end{frame}
