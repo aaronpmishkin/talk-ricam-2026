@@ -605,6 +605,13 @@
 		\item \( \textcolor{brightpink}{\Tk \in \calCk} \) is a \good{linear subspace
 			      constraint} that forces \( T^{(L)} \) to have a decomposition into
 		      some \( \theta = (W^{(1)}, \ldots, W^{(L)})\).
+		      \vspace{1ex}
+
+		      \pause
+		      \begin{itemize}
+			      \item If all \( D^{(l)}_{j_l} \) are ``nice'', then
+			            \( \calCk = \R^{d_0 \times \cdots \times c} \).
+		      \end{itemize}
 	\end{itemize}
 
 \end{frame}
@@ -632,7 +639,7 @@
 \setbeamercolor{background canvas}{bg=LightCyan}
 \begin{frame}{}
 	\begin{center}
-		\huge 4. Memorization and Approximation
+		\huge 3. Memorization and Approximation
 	\end{center}
 \end{frame}
 \setbeamercolor{background canvas}{bg=white}
@@ -864,15 +871,103 @@
 \setbeamercolor{background canvas}{bg=LightCyan}
 \begin{frame}{}
 	\begin{center}
-		\huge 5. Parameter Symmetries
+		\huge 4. Parameter Symmetries
 	\end{center}
 \end{frame}
 \setbeamercolor{background canvas}{bg=white}
 
+\begin{frame}{Parameter Symmetries: Equivalent Models}
+
+	\begin{center}
+		What about the space of \textbf{equivalent models}?
+		\[
+			\calS(\theta) = \cbr{\theta' : f_\theta(X) = f_{\theta'}(X)}.
+		\]
+	\end{center}
+
+	\pause
+	\horizontalrule
+
+	Actually, we have a \good{stronger result} than what I showed you before.
+	\vspace{2ex}
+	\pause
+
+	\begin{beamercolorbox}[wd=\textwidth,sep=1em]{result}
+		\textbf{Theorem}:
+		Every ReLU parameter \( \theta \) is equivalent to some \( \Tk(\theta) \in \calCk \).
+		Conversely, every \( \Tk \in \calCk \) is associated with a set
+		\( \Theta(\Tk) \) of equivalent ReLU parameters.
+	\end{beamercolorbox}
+\end{frame}
+
+\begin{frame}{Parameter Symmetries: Null Space}
+	We can find \good{symmetries} via \( \textcolor{mikadoyellow}{N^{(L)}} \in \Null(\Xk) \cap \calCk \):
+	\pause
+	\[
+		f_\theta(X)
+		\uncover<3->{= \Xk \odot \Tk(\theta)}
+		\uncover<4->{= \Xk \odot \rbr{\Tk(\theta) + \textcolor{mikadoyellow}{N^{(L)}}}}
+	\]
+	\uncover<5->{
+			\[ \implies f_\theta(X) = f_{\textcolor{brightpink}{\theta'}}(X) \text{ for every } \textcolor{brightpink}{\theta'} \in \Theta\rbr{\Xk \odot \rbr{\Tk(\theta) + \textcolor{mikadoyellow}{N^{(L)}}}} \]
+		}
+
+	\uncover<6->{In fact, we can find every \good{ReLU network symmetry} this way!
+			\vspace{2ex}
+		}
+
+	\uncover<7->{
+			\begin{beamercolorbox}[wd=\textwidth,sep=1em]{result}
+				\textbf{Proposition}:
+				Consider any \( L \)-layer ReLU neural network parameterized by
+				\( \theta \in \Theta \).
+				The set of all equivalent networks is
+				\begin{equation*}
+					\calS(\theta) = \bigcup \Theta(\Tk) : \Tk \in \Tk(\theta) + \Null(\Xk) \cap \calCk.
+				\end{equation*}
+				\vspace{-2ex}
+			\end{beamercolorbox}
+		}
+	\begin{itemize}
+		\item<8-> \textbf{Open Question}: what \good{interesting symmetries}
+		      exist and how do they affect \good{generalization performance}?
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Parameter Symmetries: Optimal Set}
+	\begin{itemize}
+		\item Take \( \textcolor{mikadoyellow}{\theta^*} \in \argmin_{\theta} \calL(f_\theta(X), y) \).
+		      \pause
+		      \vspace{1ex}
+
+		\item The model \good{symmetry operator} \( \calS(\theta^*) \) allows
+		      us to characterize the \good{optimal set} \( \Theta^* = \argmin_{\theta} \calL(f_\theta(X), y) \).
+	\end{itemize}
+
+	\pause
+	\horizontalrule
+
+	\begin{beamercolorbox}[wd=\textwidth,sep=1em]{result}
+		\textbf{Theorem}:
+		The set of all optimal \( L \)-layer ReLU networks is
+		\[
+			\Theta^*
+			= \calS(\textcolor{mikadoyellow}{\theta^*})
+			= \bigcup \Theta(\Tk) : \Tk \in \Tk(\textcolor{mikadoyellow}{\theta^*}) + \Null(\Xk) \cap \calCk.
+		\]
+		If \( d_l \geq m_l^* \) (\( m_l^* \leq n \)) for every \( l \in [L-1] \), then
+		\begin{equation*}
+			\Theta^* = \bigcup \Theta(\Tk) : \Tk \in \textcolor{violet}{\Tkopt} + \Null(\Xk) \cap \calCk,
+		\end{equation*}
+		where \( \textcolor{violet}{\Tkopt} \) is a solution to the equivalent tensor problem.
+	\end{beamercolorbox}
+
+\end{frame}
+
 \setbeamercolor{background canvas}{bg=LightCyan}
 \begin{frame}{}
 	\begin{center}
-		\huge 6. Big-Picture Summary
+		\huge 5. Big-Picture Summary
 	\end{center}
 \end{frame}
 \setbeamercolor{background canvas}{bg=white}
@@ -890,22 +985,53 @@
 	\textbf{Contributions}:
 	\vspace{0.5ex}
 	\begin{itemize}
-		\item The convex reformulation is an \good{unconstrained tensor program}
+		\item The convex reformulation is an \good{linear tensor model}
 		      with \bad{exponential size} even in fixed dimension.
 
 		      \pause
 		      \vspace{1ex}
 
-		\item Restricting the convex program to a ``representative subset''
-		      of ReLU activations enables \good{global optimization} in \good{poly-time}.
+		\item Restricting the tensor model to ``representative activations''
+		      enables fast \good{memorization} and \good{approximation}.
 
 		      \pause
 		      \vspace{1ex}
 
-		\item We omit many other results, including on \good{gated ReLU networks},
-		      \good{optimal sets}, and deep networks with \good{regularization}.
+		\item The null-space of the expanded data basis characterizes
+		      all \good{model symmetries} and the \good{optimal set}.
 	\end{itemize}
+\end{frame}
 
+\begin{frame}{Open Problems}
+
+	\begin{center}
+		\Large There are many open problems!
+	\end{center}
+
+	\pause
+	\vspace{1ex}
+	\horizontalrule
+	\vspace{1ex}
+
+	\begin{itemize}
+		\item \textbf{Regularization}. The set of ReLU networks is
+		      \bad{over-complete}; how do we add \good{regularization} to pick
+		      a good subset?
+
+		      \pause
+		      \vspace{1ex}
+
+		\item \textbf{Generalization}. Even for regularized problems,
+		      there are \bad{infinitely many solutions}; how different
+		      is their \good{test behavior}?
+
+		      \pause
+		      \vspace{1ex}
+
+		\item \textbf{Training}. We need to compare
+		      \good{global optimization} against \bad{local methods};
+		      are training objectives \good{well-specified}?
+	\end{itemize}
 \end{frame}
 
 %% bibliography
